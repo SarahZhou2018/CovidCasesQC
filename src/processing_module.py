@@ -92,17 +92,23 @@ def process_daily_values(daily_values):
             daily_values.values, index+1, values=[0]*num_zeros, axis=0
             ))
         
-        
+    
     # remove white spaces
     daily_values = daily_values.replace(' ', '', regex=True)
+    daily_values = daily_values.replace(u'\xa0', '', regex=True)
+    
+    # l = []
+    # for val in daily_values:
+    #     l.append(str(val).replace(u'\xa0', ''))
+    # daily_values = map(int, l)
+    
     
     # change to type int64
     daily_values = pd.to_numeric(daily_values).tolist()
-    # daily_values = pd.Series.astype(daily_values, 'int64')
     
     return daily_values
 
 
 
-# if __name__ == "__main__":
-#     print("none")
+if __name__ == "__main__":
+    print("none")
